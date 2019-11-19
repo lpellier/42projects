@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpellier <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lpellier <lpellier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/07 13:39:48 by lpellier          #+#    #+#             */
-/*   Updated: 2019/11/12 11:00:56 by lpellier         ###   ########.fr       */
+/*   Updated: 2019/11/19 13:29:48 by lpellier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 	unsigned char	*dest;
 	unsigned char	*source;
 
-	if (dst == NULL && src == NULL)
+	if (dst == NULL || src == NULL)
 		return (NULL);
 	dest = (unsigned char *)dst;
 	source = (unsigned char *)src;

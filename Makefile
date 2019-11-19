@@ -43,6 +43,7 @@ SRCS_BONUS = ft_lstnew.c\
 	   		 ft_lstdelone.c\
 	   		 ft_lstclear.c\
 	   		 ft_lstiter.c\
+			 ft_lstmap.c\
 
 FLAGS = -Wall -Werror -Wextra
 
@@ -52,7 +53,7 @@ OBJS = $(SRCS:.c=.o)
 
 OBJS_BONUS = $(SRCS_BONUS:.c=.o)
 
-$(NAME) :
+$(NAME) : 
 	@$(CC) $(FLAGS) -c $(SRCS)
 	@ar rc $(NAME) $(OBJS)
 	@ranlib $(NAME)
@@ -65,7 +66,7 @@ clean :
 fclean : clean
 	@rm -rf $(NAME)
 
-bonus : fclean
+bonus : $(OBJS_BONUS)
 	@$(CC) $(FLAGS) -c $(SRCS) $(SRCS_BONUS)
 	@ar rc $(NAME) $(OBJS) $(OBJS_BONUS)
 	@ranlib $(NAME)
