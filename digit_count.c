@@ -1,40 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   digit_count.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpellier <lpellier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/07 13:39:48 by lpellier          #+#    #+#             */
-/*   Updated: 2019/11/25 14:23:57 by lpellier         ###   ########.fr       */
+/*   Created: 2019/12/21 15:39:01 by lpellier          #+#    #+#             */
+/*   Updated: 2020/01/03 16:44:03 by lpellier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+size_t		digit_count(long value, int base)
 {
-	size_t			i;
-	unsigned char	*dest;
-	unsigned char	*source;
+	size_t i;
 
-	if (dst != NULL && src != NULL)
+	i = 0;
+	value = (value < 0 ? -value : value);
+	while (value)
 	{
-		dest = (unsigned char *)dst;
-		source = (unsigned char *)src;
-		if (dest > source)
-		{
-			i = len + 1;
-			while (--i > 0)
-				dest[i - 1] = source[i - 1];
-		}
-		else
-		{
-			i = -1;
-			while (++i < len)
-				dest[i] = source[i];
-		}
-		return (dst);
+		value /= base;
+		i++;
 	}
-	return (ft_strdup("\0"));
+	return (i);
 }

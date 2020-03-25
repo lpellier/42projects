@@ -6,7 +6,7 @@
 /*   By: lpellier <lpellier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 14:19:48 by lpellier          #+#    #+#             */
-/*   Updated: 2019/11/18 16:05:59 by lpellier         ###   ########.fr       */
+/*   Updated: 2019/11/25 14:01:47 by lpellier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,11 @@
 
 void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	t_list	*current;
-
-	if (lst == NULL || f == NULL)
+	if (!lst || !f)
 		return ;
-	current = &lst[0];
-	while (current != NULL)
+	while (lst)
 	{
-		f(current->content);
-		current = current->next;
+		f(lst->content);
+		lst = lst->next;
 	}
 }

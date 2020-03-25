@@ -1,32 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpellier <lpellier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lucaspellier <lucaspellier@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/07 14:11:37 by lpellier          #+#    #+#             */
-/*   Updated: 2019/11/25 14:29:22 by lpellier         ###   ########.fr       */
+/*   Created: 2019/11/19 10:49:54 by lpellier          #+#    #+#             */
+/*   Updated: 2020/03/25 21:09:58 by lucaspellie      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void		*ft_memchr(const void *s, int c, size_t n)
+int		check_n(char *stock)
 {
-	size_t		i;
-	char		*res;
+	int		i;
 
-	if (s != NULL)
+	i = 0;
+	if (stock == NULL)
+		return (0);
+	while (*stock)
 	{
-		i = 0;
-		res = (void *)s;
-		while (i < n)
-		{
-			if (res[i] == (char)c)
-				return (&res[i]);
-			i++;
-		}
+		if (*stock == '\n')
+			return (i + 1);
+		stock++;
+		i++;
 	}
-	return (NULL);
+	return (0);
 }

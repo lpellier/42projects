@@ -1,40 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_putunbr_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpellier <lpellier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/07 13:39:48 by lpellier          #+#    #+#             */
-/*   Updated: 2019/11/25 14:23:57 by lpellier         ###   ########.fr       */
+/*   Created: 2019/11/30 12:28:34 by lpellier          #+#    #+#             */
+/*   Updated: 2019/11/30 12:30:02 by lpellier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+void	ft_putunbr_fd(unsigned int n, int fd)
 {
-	size_t			i;
-	unsigned char	*dest;
-	unsigned char	*source;
-
-	if (dst != NULL && src != NULL)
+	if (fd < 0)
+		return ;
+	if (n >= 10)
 	{
-		dest = (unsigned char *)dst;
-		source = (unsigned char *)src;
-		if (dest > source)
-		{
-			i = len + 1;
-			while (--i > 0)
-				dest[i - 1] = source[i - 1];
-		}
-		else
-		{
-			i = -1;
-			while (++i < len)
-				dest[i] = source[i];
-		}
-		return (dst);
+		ft_putunbr_fd(n / 10, fd);
+		ft_putchar_fd(n % 10 + 48, fd);
 	}
-	return (ft_strdup("\0"));
+	else
+		ft_putchar_fd(n + 48, fd);
 }

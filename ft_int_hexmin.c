@@ -1,40 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_int_hexmin.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpellier <lpellier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/07 13:39:48 by lpellier          #+#    #+#             */
-/*   Updated: 2019/11/25 14:23:57 by lpellier         ###   ########.fr       */
+/*   Created: 2019/12/02 14:17:14 by lpellier          #+#    #+#             */
+/*   Updated: 2020/01/23 18:00:36 by lpellier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+char	*ft_int_hexmin(long n, char *tab)
 {
-	size_t			i;
-	unsigned char	*dest;
-	unsigned char	*source;
+	char			*res;
+	int				taille;
+	int				i;
 
-	if (dst != NULL && src != NULL)
+	if (n < 0)
+		return (ft_int_hexmin((-n - 1), "fedcba9876543210"));
+	else if (n > 0)
 	{
-		dest = (unsigned char *)dst;
-		source = (unsigned char *)src;
-		if (dest > source)
+		i = 0;
+		taille = digit_count(n, 16);
+		if (!(res = (char *)ft_calloc(1, (sizeof(char) * taille + 1))))
+			return (NULL);
+		taille--;
+		while (n)
 		{
-			i = len + 1;
-			while (--i > 0)
-				dest[i - 1] = source[i - 1];
+			res[taille - i++] = tab[n % 16];
+			n /= 16;
 		}
-		else
-		{
-			i = -1;
-			while (++i < len)
-				dest[i] = source[i];
-		}
-		return (dst);
+		res[taille + 1] = '\0';
+		return (res);
 	}
-	return (ft_strdup("\0"));
+	return (ft_strdup("0"));
 }

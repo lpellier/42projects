@@ -1,40 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_putnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpellier <lpellier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/07 13:39:48 by lpellier          #+#    #+#             */
-/*   Updated: 2019/11/25 14:23:57 by lpellier         ###   ########.fr       */
+/*   Created: 2019/12/03 11:38:37 by lpellier          #+#    #+#             */
+/*   Updated: 2019/12/03 11:41:12 by lpellier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+void	ft_putnstr_fd(char *s, int size, int fd)
 {
-	size_t			i;
-	unsigned char	*dest;
-	unsigned char	*source;
+	int i;
 
-	if (dst != NULL && src != NULL)
+	if (s == NULL || size == 0)
+		return ;
+	i = 0;
+	while (s[i] && size != 0)
 	{
-		dest = (unsigned char *)dst;
-		source = (unsigned char *)src;
-		if (dest > source)
-		{
-			i = len + 1;
-			while (--i > 0)
-				dest[i - 1] = source[i - 1];
-		}
-		else
-		{
-			i = -1;
-			while (++i < len)
-				dest[i] = source[i];
-		}
-		return (dst);
+		ft_putchar_fd(s[i], fd);
+		i++;
+		size--;
 	}
-	return (ft_strdup("\0"));
 }

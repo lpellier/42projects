@@ -6,7 +6,7 @@
 /*   By: lpellier <lpellier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 13:52:26 by lpellier          #+#    #+#             */
-/*   Updated: 2019/11/18 16:21:27 by lpellier         ###   ########.fr       */
+/*   Updated: 2019/11/25 14:00:54 by lpellier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,7 @@
 
 void	ft_lstdelone(t_list *lst, void (*del)(void *))
 {
-	if (lst == NULL || del == NULL)
-		return ;
-	del(lst->content);
+	if (lst != 0 && del != 0)
+		(*del)(lst->content);
 	free(lst);
-	lst = NULL;
 }

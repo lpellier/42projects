@@ -1,32 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_uintlen.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpellier <lpellier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/07 14:11:37 by lpellier          #+#    #+#             */
-/*   Updated: 2019/11/25 14:29:22 by lpellier         ###   ########.fr       */
+/*   Created: 2019/11/30 12:35:26 by lpellier          #+#    #+#             */
+/*   Updated: 2020/01/23 17:02:24 by lpellier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-void		*ft_memchr(const void *s, int c, size_t n)
+int		ft_uintlen(unsigned long n)
 {
-	size_t		i;
-	char		*res;
+	int		count;
 
-	if (s != NULL)
+	count = 1;
+	while (n >= 10)
 	{
-		i = 0;
-		res = (void *)s;
-		while (i < n)
-		{
-			if (res[i] == (char)c)
-				return (&res[i]);
-			i++;
-		}
+		n /= 10;
+		count++;
 	}
-	return (NULL);
+	return (count);
 }

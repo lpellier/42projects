@@ -6,7 +6,7 @@
 /*   By: lpellier <lpellier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 11:35:23 by lpellier          #+#    #+#             */
-/*   Updated: 2019/11/18 11:47:24 by lpellier         ###   ########.fr       */
+/*   Updated: 2020/01/06 16:34:52 by lpellier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,10 @@ int		ft_strlen(const char *s)
 {
 	int i;
 
+	i = 0;
 	if (s == NULL)
 		return (0);
-	i = 0;
-	while (s[i])
-	{
+	while (s[i] != '\0')
 		i++;
-	}
 	return (i);
 }

@@ -6,7 +6,7 @@
 /*   By: lpellier <lpellier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 10:27:41 by lpellier          #+#    #+#             */
-/*   Updated: 2019/11/19 13:32:56 by lpellier         ###   ########.fr       */
+/*   Updated: 2019/11/25 14:11:06 by lpellier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,28 @@
 
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	t_list *temp;
-	t_list *list;
+	t_list	*newlst;
+	t_list	*newelem;
 
-	if (lst != NULL && f != NULL)
+	if (!lst || !f)
+		return (NULL);
+	if (!f(lst->content))
+		return (NULL);
+	newlst = ft_lstnew(f(lst->content));
+	newlst->next = NULL;
+	if (!lst->next)
+		return (newlst);
+	lst = lst->next;
+	while (lst)
 	{
-		if (!(list = ft_lstnew((*f)(lst->content))))
+		if (!f(lst->content))
 		{
-			ft_lstclear(&list, del);
+			ft_lstclear(&newlst, *del);
 			return (NULL);
 		}
-		while ((lst = lst->next))
-		{
-			if (!(temp = ft_lstnew((*f)(temp->content))))
-			{
-				ft_lstclear(&list, del);
-				return (NULL);
-			}
-			ft_lstadd_back(&list, temp);
-		}
-		return (list);
+		newelem = ft_lstnew(f(lst->content));
+		ft_lstadd_back(&newlst, newelem);
+		lst = lst->next;
 	}
-	return (NULL);
+	return (newlst);
 }

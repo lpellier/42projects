@@ -6,7 +6,7 @@
 /*   By: lpellier <lpellier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 16:07:35 by lpellier          #+#    #+#             */
-/*   Updated: 2019/11/18 15:59:35 by lpellier         ###   ########.fr       */
+/*   Updated: 2019/11/25 14:25:46 by lpellier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,20 +37,21 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 
 	i = 0;
 	j = 0;
-	if (haystack == NULL || needle == NULL)
-		return (NULL);
-	if (haystack == needle)
-		return ((char*)haystack);
-	if (needle[j] == '\0')
-		return ((char*)haystack);
-	while (haystack[i] != '\0' && (i + ft_strlen(needle) < (int)len))
+	if (haystack != NULL && needle != NULL)
 	{
-		if (haystack[i] == needle[j])
+		if (haystack == needle)
+			return ((char*)haystack);
+		if (needle[j] == '\0')
+			return ((char*)haystack);
+		while (haystack[i] != '\0' && (i + ft_strlen(needle) < (int)len))
 		{
-			if (ft_check_needle(&haystack[i], needle) == 1)
-				return (&((char*)haystack)[i]);
+			if (haystack[i] == needle[j])
+			{
+				if (ft_check_needle(&haystack[i], needle) == 1)
+					return (&((char*)haystack)[i]);
+			}
+			i++;
 		}
-		i++;
 	}
 	return (NULL);
 }

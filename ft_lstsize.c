@@ -6,7 +6,7 @@
 /*   By: lpellier <lpellier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 13:24:59 by lpellier          #+#    #+#             */
-/*   Updated: 2019/11/18 16:06:11 by lpellier         ###   ########.fr       */
+/*   Updated: 2019/11/25 14:10:30 by lpellier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 int		ft_lstsize(t_list *lst)
 {
 	int		i;
-	t_list	*current;
 
+	if (!lst)
+		return (0);
 	i = 0;
-	current = &lst[0];
-	while (current != NULL)
+	while (lst)
 	{
+		lst = lst->next;
 		i++;
-		current = current->next;
 	}
 	return (i);
 }
